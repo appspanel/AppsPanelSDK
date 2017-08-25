@@ -1,0 +1,6 @@
+framework module AppsPanelSDK {
+  umbrella header "AppsPanelSDK.h"
+
+  export *
+  module * { export * }
+}
