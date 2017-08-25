@@ -19,3 +19,11 @@ FOUNDATION_EXPORT const unsigned char AppsPanelSDKVersionString[];
 #import <AppsPanelSDK/AppsPanel.h>
 #import <AppsPanelSDK/APCustomURLConnection.h>
 #import <Base64/MF_Base64Additions.h>
+#import <AppsPanelSDK/APLogger.h>
+#import <AppsPanelSDK/APReachability.h>
+#import <AppsPanelSDK/APSocketManager.h>
+#import <AppsPanelSDK/APTextManager.h>
+#import <AppsPanelSDK/APUserTokenManager.h>
+#import <AppsPanelSDK/APWSManager.h>
+#import <AppsPanelSDK/NSData+AES.h>
+#import <AppsPanelSDK/NSData+Zip.h>
