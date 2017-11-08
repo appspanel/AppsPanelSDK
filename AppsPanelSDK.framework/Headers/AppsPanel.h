@@ -25,23 +25,6 @@ typedef NS_ENUM(NSUInteger, APLogType) {
 	APLogTypeFull,
 };
 
-/**
- Security options
- 
- - securityOptionNone: No additional security
- - securityOptionJWTOnly: a JSON Web Token is used to transfer user token and secure data
- - securityOptionInAndOut: Encrypts all calls execept GET ones, in and out
- - securityOptionIn: Answers from the WS will be encrypted
- - securityOptionOut: all requests exectp GET ones will be encrypted
- */
-typedef enum securityOptions {
-    securityOptionNone,
-    securityOptionJWTOnly,
-    securityOptionInAndOut,
-    securityOptionIn,
-    securityOptionOut
-} securityOptions;
-
 /** 
  AppsPanel SDK main class.
  It will manage the download of the configuration of your application and activate the modules that should be (eg : Ad, location, ...)
@@ -113,11 +96,6 @@ typedef enum securityOptions {
 @property (nonatomic, readwrite) BOOL secureAnswer;
 
 /*!
- @abstract BOOL determine if JWT should be used to secure the exchanges
- */
-@property (nonatomic, assign) BOOL useJWT;
-
-/*!
  @abstract Determines if the secure_key is a new random for each request
  */
 @property (nonatomic, readwrite) BOOL shouldUseRandomKey;
@@ -151,14 +129,6 @@ typedef enum securityOptions {
  @warning You must call this method after setting all configuration properties
  */
 - (void)startSession;
-
-/**
- Set the security level of the SDK
-
- @param options The desired level of security
- @param randomKey If set to YES, a random encryption key will be generated for each call
- */
-- (void)securityOptions:(securityOptions)options randomKeyForEachCall:(BOOL)randomKey;
 
 /*!
  @name Pushs notifications
