@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppsPanel.h"
 
 /*!
  *  @brief Enum for setting up log output level.
@@ -102,17 +103,6 @@ typedef NS_ENUM(NSUInteger, APWSErrorType) {
 @property (nonatomic, strong) id result;
 
 /*!
- @abstract 
- If apwsError != nil and there is cache, dateLastCache will contains the attribute NSFileModificationDate of the local path of the file
- 
- @discussion
- Equals the date of the last success of the request
- 
- @see apwsError
- */
-@property (nonatomic, strong) NSString *dateLastCache;
-
-/*!
  @abstract
  apwsError != nil if there was an issue with the WebService
  
@@ -134,30 +124,10 @@ typedef NS_ENUM(NSUInteger, APWSErrorType) {
 
 
 /**
- Sets if the call needs a user token. If set to YES, the token will is added automatically in the right place.
+@abstract
+Sets if the call needs a user token. If set to YES, the token will is added automatically in the right place.
  */
 @property (nonatomic, assign) BOOL needsToken;
-
-
-/**
- Sets if WebServices call should be encrypted. Encryptions includes the GET parameters as well as the body for calls containing one.
- */
-@property (nonatomic, assign) BOOL useSecureParameter;
-
-/**
- Sets if the WebServices answers are encrypted.
- */
-@property (nonatomic, assign) BOOL useSecureAnswer;
-
-/**
- Sets if a differents key whould be used for each called.
- 
- @discussion
- If set to YES, a random key is generated for each call.
- 
- If set to NO, the app's private key is used. For WS calls, the 16 first caracters of the key are used (concatenated to themselves). For decrypting the answer, the 16 last caracters concatened to themselves are used.
- */
-@property (nonatomic, assign) BOOL useRandomKey;
 
 /*!
 @abstract
@@ -170,15 +140,6 @@ NSDictionary of data to add to the JSON Web Token
  Use it to link an id that you wan't to use later
  */
 @property (nonatomic, strong) id userInfos;
-
-/*!
- @abstract
- By default, the APWSManager class will create cache after a apwsFinishedDownload if no error occured
- 
- @discussion
- Set to TRUE if you wan't to deactivate the cache system for the
-*/
-@property (nonatomic, readwrite) BOOL desactiveCache;
 
 // If TRUE la request sera gardée en mémoire jusqu'au succès et pourra être réexécutée ultérieurement
 // Lors d'une réexécution après un Bug (typiquement, pas de net au moment de l'action), le delegate ne sera pas rappelé !
@@ -333,6 +294,13 @@ NSDictionary of data to add to the JSON Web Token
  */
 - (id)initWithRest:(NSString *)action delegate:(id <APWSManagerDelegate>)del WithGet:(NSDictionary *)dictionnary andDelete:(NSDictionary *)deleteDictionnary andTag:(int)aTag;
 
+/**
+ Sets the security level for a designated WS call
+
+ @param mode The security mode choosen
+ @param randomizeKey A boolean indicating wether a random key should be used for this call
+ */
+- (void)securityModeForCall:(APSecurityMode)mode randomizeKey:(BOOL)randomizeKey;
 /*!
  @abstract
  Call the webservice
@@ -462,30 +430,6 @@ NSDictionary of data to add to the JSON Web Token
  @param dictionnary List of key/value to send in GET
  */
 + (NSMutableURLRequest *)getRequestForRest:(NSString *)action WithGet:(NSDictionary *)dictionnary;
-
-/*!
- @abstract Return the current cache for the request
- 
- @param request The Request
- 
- @discussion Return nil if there is no cache for the request
- 
- @see timeStampCacheFor:
- */
-+ (id)getCacheFor:(NSURLRequest *)request;
-
-/*!
- @abstract Return the timestamp of the current cache for the request
- 
- @param request The Request
- 
- @returns Timestamp (timeIntervalSince1970) of the file's NSFileModificationDate property
- 
- @warning Returns -1 if there is no cache for the request
- 
- @see getCacheFor:
- */
-+ (NSTimeInterval)timeStampCacheFor:(NSURLRequest *)request;
 
 @end
 

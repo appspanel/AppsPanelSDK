@@ -25,6 +25,24 @@ typedef NS_ENUM(NSUInteger, APLogType) {
 	APLogTypeFull,
 };
 
+/**
+ Security options
+ 
+ - APSecurityModeNone: No additional security
+ - APSecurityModeJWTOnly: a JSON Web Token is used to transfer user token and secure data
+ - APSecurityModeRequest: all requests execpt GET ones will be encrypted
+ - APSecurityModeResponse: Answers from the WS will be encrypted
+ - APSecurityModeRequestAndResponse: Encrypts all calls execept GET ones, in and out
+ */
+
+typedef NS_ENUM(NSUInteger, APSecurityMode) {
+    APSecurityModeNone,
+    APSecurityModeJWTOnly,
+    APSecurityModeRequest,
+    APSecurityModeResponse,
+    APSecurityModeRequestAndResponse
+};
+
 /** 
  AppsPanel SDK main class.
  It will manage the download of the configuration of your application and activate the modules that should be (eg : Ad, location, ...)
@@ -85,20 +103,15 @@ typedef NS_ENUM(NSUInteger, APLogType) {
 */
 @property (nonatomic, readwrite) BOOL baseUrlSDK;
 
-/*!
- @abstract BOOL determines if parameters should be crypted
+/**
+ Set the security level of the SDK
+ 
+ @param options The desired level of security
+ @param randomizeKey If set to YES, a random encryption key will be generated for each call
  */
-@property (nonatomic, readwrite) BOOL secureParameter;
+- (void)securityMode:(APSecurityMode)options randomizeKey:(BOOL)randomizeKey;
 
-/*!
- @abstract BOOL determines if WS anwsers are crypted
- */
-@property (nonatomic, readwrite) BOOL secureAnswer;
-
-/*!
- @abstract Determines if the secure_key is a new random for each request
- */
-@property (nonatomic, readwrite) BOOL shouldUseRandomKey;
+@property (nonatomic, readonly) APSecurityMode securityMode;
 
 /*!
  @name Device
@@ -129,6 +142,8 @@ typedef NS_ENUM(NSUInteger, APLogType) {
  @warning You must call this method after setting all configuration properties
  */
 - (void)startSession;
+
+
 
 /*!
  @name Pushs notifications

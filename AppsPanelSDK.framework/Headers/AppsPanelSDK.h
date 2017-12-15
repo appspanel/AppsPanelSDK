@@ -27,3 +27,4 @@ FOUNDATION_EXPORT const unsigned char AppsPanelSDKVersionString[];
 #import <AppsPanelSDK/APWSManager.h>
 #import <AppsPanelSDK/NSData+AES.h>
 #import <AppsPanelSDK/NSData+Zip.h>
+
