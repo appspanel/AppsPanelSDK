@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "AppsPanelSDK"
-  s.version      = "4.8"
+  s.version      = "4.8.1"
   s.summary      = "AppsPanelSDK"
-  s.homepage     = "http://www.appspanel.com/integration-sdk-mobile-backend/"
+  s.homepage     = "https://appspanel.readme.io/docs/ios-getting-started"
   s.license      = { :type => "Copyright", :file => "LICENSE" }
   s.author       = "Apps Panel"
   s.platform     = :ios, "8.0"
