@@ -43,6 +43,20 @@ typedef NS_ENUM(NSUInteger, APSecurityMode) {
     APSecurityModeRequestAndResponse
 };
 
+/**
+ Push Notifications States
+ 
+ - APPushStateRefused: User has denied push notifications
+ - APPushStateAccepted: User has accepted push notifications
+ - APPushStateUndefined: User has not been asked for push notifications permissions
+ */
+
+typedef NS_ENUM(NSUInteger, APPushState) {
+    APPushStateRefused,
+    APPushStateAccepted,
+    APPushStateUndefined,
+};
+
 /** 
  AppsPanel SDK main class.
  It will manage the download of the configuration of your application and activate the modules that should be (eg : Ad, location, ...)
@@ -112,6 +126,13 @@ typedef NS_ENUM(NSUInteger, APSecurityMode) {
 - (void)securityMode:(APSecurityMode)options randomizeKey:(BOOL)randomizeKey;
 
 @property (nonatomic, readonly) APSecurityMode securityMode;
+
+
+/**
+ @abstract State of pushs notifications
+ @see APPushState
+ */
+@property(nonatomic, readonly) APPushState pushNotificationsState;
 
 /*!
  @name Device
