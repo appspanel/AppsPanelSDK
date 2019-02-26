@@ -57,6 +57,13 @@ typedef NS_ENUM(NSUInteger, APPushState) {
     APPushStateUndefined,
 };
 
+/**
+ Push Notifications Callback
+ @see APPushState
+ */
+
+typedef void (^RegisterPushCompletion)(APPushState state);
+
 /** 
  AppsPanel SDK main class.
  It will manage the download of the configuration of your application and activate the modules that should be (eg : Ad, location, ...)
@@ -186,6 +193,13 @@ typedef NS_ENUM(NSUInteger, APPushState) {
  @discussion Please disable the automatic option for push in the SDK configuration if you use this method.
  */
 - (void)registerForRemoteNotifications;
+
+/**
+ @abtract Call this method to show the push notification's authorization popin. Once it has been shown, the SDK will manage everything by its own.
+ 
+ @discussion Please disable the automatic option for push in the SDK configuration if you use this method.
+ */
+- (void)registerForRemoteNotificationsWithCompletion:(RegisterPushCompletion)completion;
 
 
 /**
