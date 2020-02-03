@@ -52,9 +52,9 @@ typedef NS_ENUM(NSUInteger, APSecurityMode) {
  */
 
 typedef NS_ENUM(NSUInteger, APPushState) {
-    APPushStateRefused,
-    APPushStateAccepted,
-    APPushStateUndefined,
+    APPushStateUndefined = 0,
+    APPushStateAccepted = 1,
+    APPushStateRefused = 2,
 };
 
 /**
@@ -205,8 +205,9 @@ typedef void (^RegisterPushCompletion)(APPushState state);
 /**
  @abstract Sends a patch to the server containing the informations about the state of the push notifications on the user device (ie. enabled or not).
  @discussion This method should be called in the AppDelegate didBecomeActive method
+ @deprecated This method will be removed in a future release. It does nothing.
  */
-- (void)sendPushPatch;
+- (void)sendPushPatch __attribute__((deprecated));
 
 /*!
  @abstract Check if the application was launch after a click on a push notification
