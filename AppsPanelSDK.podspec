@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.vendored_frameworks = 'AppsPanelSDK.framework'
   s.resource = 'AppsPanelResources.bundle'
 
-  s.frameworks      = 'AppsPanelSDK', 'ReplayKit', 'UIKit', 'AdSupport', 'SystemConfiguration', 'Security', 'Foundation', 'CoreTelephony', 'CoreMotion'
+  s.frameworks      = 'AppsPanelSDK', 'ReplayKit', 'UIKit', 'AdSupport', 'SystemConfiguration', 'Security', 'Foundation', 'CoreTelephony', 'CoreMotion', 'WebKit'
   s.ios.dependency 'JWT', '3.0.0-beta.2'
   s.ios.dependency 'Lockbox'
   s.ios.dependency 'APBanner'
