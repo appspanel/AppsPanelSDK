@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "Copyright", :file => "LICENSE" }
   s.author       = "Apps Panel"
   s.platform     = :ios, "10.0"
-  s.source       = { :git => "https://github.com/appspanel/AppsPanelSDK", :tag => "#{s.version}"}
+  s.source       = { :git => "https://github.com/appspanel/AppsPanelSDK.git", :tag => "#{s.version}"}
 
   # s.prefix_header_contents = '#import "APLogger.h"'
 
